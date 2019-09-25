@@ -1,0 +1,7 @@
+<div class="tab-pane" ng-show="tab === 2">
+<br>
+<label>{{ 'HEIGHT' | translate }} ({{ 'INMETERS' | translate }})</label><br>
+<input class="form-control" name="height" ng-model="height" ngMin="0" ngMax="10" valid-number ng-change="convertMetersToFeetAndInches(height); calculateBMI(weight, height)"></input><br/><br/>
+<label>{{ 'WEIGHT' | translate }} ({{ 'INKGS' | translate }})</label><br>
+<input class="form-control" name="weight" ng-model="weight" valid-number required ng-change="convertKilogramsToPounds(weight); calculateBMI(weight, height)" ></input><br/><br/>
+</div>

@@ -1,0 +1,18 @@
+<div class="tab-pane active" ng-show="tab === 1">
+<br>
+<label>{{ 'HEIGHT' | translate }} ({{ 'INFEETANDINCHES' | translate }})</label><br>
+<div class="form-group">
+<div class="col-sm-6">
+<label>{{ 'FEET' | translate }}</label>
+<input class="input-sm form-control" name="heightFeet" ng-model="heightFeet" valid-number required ng-change="convertFeetAndInchesToMeters(heightFeet, heightInch);  calculateBMI(weight, height)" ></input> 
+</div>
+<div class="col-sm-6">
+<label>{{ 'INCH' | translate }}</label>
+<input class="input-sm form-control" name="heightInch" ng-model="heightInch" valid-number required ng-change="convertFeetAndInchesToMeters(heightFeet, heightInch);  calculateBMI(weight, height)"></input>
+</div>
+</div>
+<div class="clearfix"></div><br>
+<label>{{ 'WEIGHT' | translate }} ({{ 'INPOUNDS' | translate }})</label><br>
+<input class="form-control" name="weight" ng-model="weightPound" valid-number required ng-change="convertPoundsToKilograms(weightPound);  calculateBMI(weight, height)" ></input><br/><br/>
+</div>
+</div>

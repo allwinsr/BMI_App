@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html ng-app="BMICalculator">
+<head>
+<link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="style.css" />
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+<style type="text/css">
+.entry {
+  width: 500px;
+  margin: 10px auto;
+  text-align: center;
+}
+</style>
+</head>
+<body>
+<form name="bmiForm" ng-controller="BMIController as bmiCtrl" ng-submit="bmiForm.$valid && calculateBMI(weight, height)" novalidate>
+<div class="well entry"> 
+<h3>{{ 'APPNAME' | translate }}<br>
+<small class="text-muted">{{ 'TAGLINE' | translate }}</small>
+</h3>
+<div class="form-group ">
+<div class="col-sm-6">
+<h4>{{ 'TITLE' | translate }}</h4>
+</div><div class="col-sm-6">
+<label for="sel1">{{ 'SELECTLANGUAGE' | translate }}</label>
+<select class="form-control-sm" ng-options="key as value | translate for (key , value) in languages" ng-model="language" ng-change="updateLanguage()"></select>
+</div>
+</div><div class="clearfix"></div>
+<p class="text-nowrap"> {{'MESSAGE' | translate}}</p>
+<hr/>
+<section>
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title text-left text-wrap">&nbsp;</h3>
+<span class="pull-right">                        
+<ul class="nav panel-tabs">
+<li ng-class="{ active:isSelected(1) }"> <a href ng-click="selectTab(1)">{{ 'STANDARD' | translate }}</a> </li>
+<li ng-class="{ active:isSelected(2) }"> <a href ng-click="selectTab(2)">{{ 'METRIC' | translate }}</a> </li>
+</ul></span>
+</div>   
+ <div class="panel-body">
+ <button ng-click="toggleModal()" class="btn btn-sm btn-primary pull-left">{{'MODALTITLE' | translate}}</button>  
+ <div class="clearfix"></div>
+<div class="tab-content">
+<div standard-calculator></div>
+<div metric-calculator></div>
+</div>
+</div>
+<input class="btn btn-primary" type="submit" value="{{ 'CALCULATE' | translate }}" /><br><br>
+            </div>   
+<div ng-show="bmi !== 0">
+<div class="panel">
+<label>{{ 'BMI' | translate }}</label><br>
+<label style = "color: {{bmiColor}}">{{ bmi | number:2 }} {{ 'KGM' | translate }}<sup>2</sup></label><br>
+<blockquote>{{bmiStatus | translate}}</blockquote>
+</div>
+<div class="alert alert-info">
+<strong>{{ 'INFO' | translate }}!</strong> {{ 'WEIGHTRANGE' | translate }} <strong> <div ng-show="tab === 1">{{ minWeightPounds | number:2 }} - {{ maxWeightPounds | number:2 }} {{ 'POUNDS' | translate }}</div><div ng-show="tab === 2">{{ minWeight | number:2}} - {{ maxWeight | number:2}} {{ 'KGS' | translate }}</div></strong>
+</div>
+</div>  
+</section>
+</div>
+<modal title="{{ 'MODALTITLE' | translate }}" visible="showModal">
+    <div class="panel">
+					<table width="350" class="table table-bordered table-striped table-hover">
+                    <tbody><tr>
+                      <th class="text-center" valign="top" ><strong>Status</strong></th>
+                            <th class="text-center" valign="top" scope="col"><strong>BMIRANGE</strong></th>
+                    </tr>
+                          <tr ng-class="{'Underweight':'warning'}[bmiStatus]">
+                            <td valign="top"><strong>{{ 'UNDERWEIGHT' | translate }} </strong></td>
+                            <td valign="top"><div align="center"><span ng-show="language==='en'">{{ 'BELOW' | translate }} </span> 18.5<span ng-show="language==='ta'"> {{ 'BELOW' | translate }} </span></div></td>
+                          </tr>                         
+                      </tbody></table></div>
+  </modal>    
+</form>
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript" src="bootstrap.min.js"></script>
+<script type="text/javascript" src="angular-translate.min.js"></script>
+<script type="text/javascript" src="bmi.js"></script>
+<script type="text/javascript" src="standard.js"></script>
+<script type="text/javascript" src="metric.js"></script>
+<script type="text/javascript" src="status.js"></script> 
+</body>
+</html>
+

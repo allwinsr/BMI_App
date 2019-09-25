@@ -1,0 +1,23 @@
+<div class="panel">
+					<table width="350" class="table table-bordered table-striped table-hover">
+                    <tbody><tr>
+                      <th class="text-center" valign="top" ><strong>{{ 'STATUS' | translate }}</strong></th>
+                            <th class="text-center" valign="top" scope="col"><strong>{{ 'BMIRANGE' | translate }}</strong></th>
+                    </tr>
+                          <tr ng-class="{'Underweight':'warning'}[bmiStatus]">
+                            <td valign="top"><strong>{{ 'UNDERWEIGHT' | translate }} </strong></td>
+                            <td valign="top"><div align="center"><span ng-show="language==='en'">{{ 'BELOW' | translate }} </span> 18.5<span ng-show="language==='ta'"> {{ 'BELOW' | translate }} </span></div></td>
+                          </tr>
+                          <tr ng-class="{'Normal':'success'}[bmiStatus]">
+                            <td valign="top"><strong>{{ 'NORMAL' | translate }} </strong></td>
+                            <td valign="top"><div align="center">18.5-24.9 </div></td>
+                          </tr>
+                          <tr ng-class="{'Overweight':'active'}[bmiStatus]">
+                            <td valign="top"><strong>{{ 'OVERWEIGHT' | translate }} </strong></td>
+                            <td valign="top"><div align="center">25.0-29.9</div></td>
+						</tr>
+                          <tr ng-class="{'Obesity':'danger'}[bmiStatus]">
+                            <td valign="top"><strong>{{ 'OBESE' | translate }} </strong></td>
+                            <td valign="top"><div align="center">30.0 <span ng-show="language==='en'">{{ 'AND' | translate }}</span>{{ 'ABOVE' | translate }} </div></td>
+                      </tr>
+                      </tbody></table></div>
